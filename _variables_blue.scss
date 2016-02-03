@@ -7,10 +7,10 @@ $bootstrap-sass-asset-helper: false !default;
 //
 //## Settings for some of the most global styles.
 
-$content-bg:            #FFF !default; //** Background color for text content areas.
-$primary-color:         #0089D7 !default; // Brands primary color
+$content-bg:            #fff !default; //** Background color for text content areas.
+$primary-color:        	#0089D7 !default; // Brands primary color
 $secondary-color:       #0089D7 !default; // In case branding employs two colors.
-$body-bg:               lighten($primary-color, 23%) !default; //** Background color for `<body>`.
+$body-bg:               lighten($primary-color, 35%) !default; //** Background color for `<body>`.
 $border-color:          $body-bg !default; //** Standardize border colors.
 $component-active-color:    $content-bg !default; //** Global color for active items (e.g., navs or dropdowns).
 $component-active-bg:       darken($primary-color, 5%) !default; //** Global background color for active items (e.g., navs or dropdowns).
@@ -34,10 +34,10 @@ $brand-info:            #536DFE !default;
 $brand-warning:         #f0ad4e !default;
 $brand-danger:          #d9534f !default;
 
-$text-color:            $gray-base !default; //** Global text color on `<body>`.
-$headings-color:        darken($brand-primary, 5%) !default;
 $dark-on-light-text:    #000 !default;
 $light-on-dark-text:    #fff !default;
+$headings-color:        if((lightness($body-bg) > 50), darken($primary-color,25%), $light-on-dark-text);
+$text-color:            if((lightness($content-bg) > 50), $dark-on-light-text, $light-on-dark-text);
 $link-color:            darken($brand-primary, 15%) !default; //** Global textual link color.
 $link-hover-color:      darken($link-color, 25%) !default; //** Link hover color set via `darken()` function.
 $link-hover-decoration: underline !default; //** Link hover decoration.
@@ -134,13 +134,14 @@ $table-condensed-cell-padding:  5px !default;
 //** Table Heading `<th>` background color.
 .table thead { 
 	                            background-color: $body-bg;
+	                            color: if((lightness($body-bg) > 50), darken($brand-primary, 20%), $light-on-dark-text);
 	                            border-bottom: 3px solid $border-color;
 	                            }
 
 //** Default background color used for all tables.
 $table-bg:                      $content-bg !default;
 //** Background color used for `.table-striped`.
-$table-bg-accent:               lighten($body-bg, 2.5%) !default;
+$table-bg-accent:               if((lightness($content-bg) > 50), darken($body-bg,5%),lighten($content-bg,25%));
 //** Background color used for `.table-hover`.
 $table-bg-hover:                #f5f5f5 !default;
 $table-bg-active:               $table-bg-hover !default;
@@ -157,7 +158,7 @@ $btn-font-weight:                normal !default;
 
 $btn-default-color:              $light-on-dark-text !default;
 $btn-default-bg:                 darken($brand-primary, 25%) !default;
-$btn-default-border:             transparent !default;
+$btn-default-border:             $border-color !default;
 
 $btn-primary-color:              $light-on-dark-text !default;
 $btn-primary-bg:                 $brand-primary !default;
@@ -197,7 +198,7 @@ $input-bg:                       $content-bg !default;
 $input-bg-disabled:              $gray-lighter !default;
 
 //** Text color for `<input>`s
-$input-color:                    $gray !default;
+$input-color:                    if((lightness($input-bg) > 50), $dark-on-light-text, $light-on-dark-text);
 //** `<input>` border color
 $input-border:                   #ccc !default;
 
@@ -381,7 +382,7 @@ $navbar-default-border:            $border-color !default;
 
 // Navbar links
 $navbar-default-link-color:                $brand-primary !default;
-$navbar-default-link-hover-color:          #333 !default;
+$navbar-default-link-hover-color:          if((lightness($navbar-default-bg) > 50), darken($navbar-default-link-color,20%), lighten($navbar-default-link-color,15%));
 $navbar-default-link-hover-bg:             transparent !default;
 $navbar-default-link-active-color:         $light-on-dark-text !default;
 $navbar-default-link-active-bg:            $brand-primary !default;
@@ -407,7 +408,7 @@ $navbar-inverse-border:                     $border-color !default;
 .navbar-inverse { border: none;}
 
 // Inverted navbar links
-$navbar-inverse-link-color:                 $light-on-dark-text !default;
+$navbar-inverse-link-color:                 if((lightness($navbar-inverse-bg) > 45), $dark-on-light-text, $light-on-dark-text);
 $navbar-inverse-link-hover-color:           $light-on-dark-text !default;
 $navbar-inverse-link-hover-bg:              darken($brand-primary, 10%) !default;
 $navbar-inverse-link-active-color:          $light-on-dark-text !default;
@@ -416,8 +417,8 @@ $navbar-inverse-link-disabled-color:        #444 !default;
 $navbar-inverse-link-disabled-bg:           transparent !default;
 
 // Inverted navbar brand label
-$navbar-inverse-brand-color:                $light-on-dark-text !default;
-$navbar-inverse-brand-hover-color:          #fff !default;
+$navbar-inverse-brand-color:                if((lightness($navbar-inverse-bg) > 45), $dark-on-light-text, $light-on-dark-text);
+$navbar-inverse-brand-hover-color:          if((lightness($navbar-inverse-brand-color) < 50), lighten($navbar-inverse-brand-color,25%), $light-on-dark-text);
 $navbar-inverse-brand-hover-bg:             transparent !default;
 
 
@@ -433,7 +434,7 @@ $navbar-inverse-toggle-border-color:        #333 !default;
 
 //=== Shared nav styles
 $nav-link-padding:                          10px 15px !default;
-$nav-link-hover-bg:                         $content-bg !default;
+$nav-link-hover-bg:                         transparent !default;
 
 $nav-disabled-link-color:                   $gray-light !default;
 $nav-disabled-link-hover-color:             $gray-light !default;
@@ -498,7 +499,7 @@ $pager-disabled-color:                 $pagination-disabled-color !default;
 //##
 
 $jumbotron-padding:              30px !default;
-$jumbotron-color:                $dark-on-light-text !default;
+$jumbotron-color:                $text-color !default;
 $jumbotron-bg:                   $content-bg !default;
 $jumbotron-heading-color:        inherit !default;
 $jumbotron-font-size:            ceil(($font-size-base * 1.5)) !default;
@@ -682,7 +683,7 @@ $progress-bar-info-bg:        $brand-info !default;
 //##
 
 //** Background color on `.list-group-item`
-$list-group-bg:                 #fff !default;
+$list-group-bg:                 $content-bg !default;
 //** `.list-group-item` border color
 $list-group-border:             $border-color !default;
 
@@ -692,7 +693,7 @@ $list-group-border:             $border-color !default;
 $list-group-border-radius:      $border-radius-base !default;
 
 //** Background color of single list items on hover
-$list-group-hover-bg:           #f5f5f5 !default;
+$list-group-hover-bg:           $content-bg !default;
 //** Text color of active list items
 $list-group-active-color:       $component-active-color !default;
 //** Background color of active list items
@@ -709,9 +710,10 @@ $list-group-disabled-bg:         $gray-lighter !default;
 //** Text color for content within disabled list items
 $list-group-disabled-text-color: $list-group-disabled-color !default;
 
-$list-group-link-color:         #555 !default;
-$list-group-link-hover-color:   $list-group-link-color !default;
-$list-group-link-heading-color: #333 !default;
+$list-group-link-color:         $link-color !default;
+$list-group-link-hover-color:   if((lightness($list-group-bg) > 50), darken($list-group-link-color,15%), lighten($list-group-link-color,15%)); /* If light bg is used use darker link text and visa versa */
+
+$list-group-link-heading-color: $link-color !default;
 
 
 //== Panels
@@ -883,4 +885,4 @@ $dl-horizontal-offset:        $component-offset-horizontal !default;
 //** Point at which .dl-horizontal becomes horizontal
 $dl-horizontal-breakpoint:    $grid-float-breakpoint !default;
 //** Horizontal line color.
-$hr-border:                   $content-bg !default;
+$hr-border:                   $headings-color;
