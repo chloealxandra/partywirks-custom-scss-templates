@@ -8,9 +8,9 @@ $bootstrap-sass-asset-helper: false !default;
 //## Settings for some of the most global styles.
 
 $content-bg:            #fff !default; //** Background color for text content areas.
-$primary-color:        	#0089D7 !default; // Brands primary color
-$secondary-color:       #0089D7 !default; // In case branding employs two colors.
-$body-bg:               lighten($primary-color, 35%) !default; //** Background color for `<body>`.
+$primary-color:        	#88CBE8 !default; // Brands primary color #88CBE8
+$secondary-color:       #E8847B !default; // In case branding employs two colors.
+$body-bg:               lighten($primary-color, 23%) !default; //** Background color for `<body>`.
 $border-color:          $body-bg !default; //** Standardize border colors.
 $component-active-color:    $content-bg !default; //** Global color for active items (e.g., navs or dropdowns).
 $component-active-bg:       darken($primary-color, 5%) !default; //** Global background color for active items (e.g., navs or dropdowns).
