@@ -9,11 +9,11 @@ $bootstrap-sass-asset-helper: false !default;
 
 $content-bg:            #fff !default; //** Background color for text content areas.
 $primary-color:        	#D11FB6 !default; // Brands primary color #88CBE8
-$secondary-color:       #D11FB6 !default; // In case branding employs two colors.
+$secondary-color:       #1FB6D1 !default; // In case branding employs two colors.
 $body-bg:               lighten($primary-color, 23%) !default; //** Background color for `<body>`.
 $border-color:          $body-bg !default; //** Standardize border colors.
-$component-active-color:    $content-bg !default; //** Global color for active items (e.g., navs or dropdowns).
-$component-active-bg:       darken($primary-color, 5%) !default; //** Global background color for active items (e.g., navs or dropdowns).
+$component-active-color:    darken($primary-color, 25%) !default; //** Global color for active items (e.g., navs or dropdowns).
+$component-active-bg:       lighten($primary-color, 25%) !default; //** Global background color for active items (e.g., navs or dropdowns).
 
 
 //== Colors
@@ -29,7 +29,7 @@ $gray-lighter:          lighten($gray-base, 93.5%) !default; // #eee
 
 $brand-primary:         $primary-color !default; // #337ab7
 $brand-secondary:       $secondary-color !default; // In case branding employs two colors.
-$brand-success:         #6ACF5E !default;
+$brand-success:         #22E2B2 !default;
 $brand-info:            #536DFE !default;
 $brand-warning:         #f0ad4e !default;
 $brand-danger:          #d9534f !default;
@@ -45,18 +45,16 @@ $link-hover-decoration: underline !default; //** Link hover decoration.
 
 //== Typography
 //
-//## Import Google Font.
-@import url(https://fonts.googleapis.com/css?family=Lato:400,100,700|Slabo+27px);
 
 //## Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:  Lato, Arial sans-serif!default;
-$font-family-serif:       'Slabo 27px', Georgia serif !default;
+$font-family-sans-serif:  Arial, sans-serif!default;
+$font-family-serif:       Georgia,serif !default;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
 $font-family-base:        $font-family-sans-serif !default;
 
-$font-size-base:          14px !default;
+$font-size-base:          16px !default;
 $font-size-large:         ceil(($font-size-base * 1.25)) !default; // ~18px
 $font-size-small:         ceil(($font-size-base * 0.85)) !default; // ~12px
 
@@ -73,7 +71,7 @@ $line-height-base:        1.428571429 !default; // 20/14
 $line-height-computed:    floor(($font-size-base * $line-height-base)) !default; // ~20px
 
 //** By default, this inherits from the `<body>`.
-$headings-font-family:    $font-family-serif !default;
+$headings-font-family:    $font-family-sans-serif !default;
 $headings-font-weight:    500 !default;
 $headings-line-height:    1.1 !default;
 
@@ -149,6 +147,19 @@ $table-bg-active:               $table-bg-hover !default;
 //** Border color for table and cell borders.
 $table-border-color:            $border-color !default;
 
+.table * {
+	color: if((lightness($content-bg) > 50), $dark-on-light-text, $light-on-dark-text)!important;
+}
+
+
+.table-striped .odd {
+  color: $dark-on-light-text!important;
+}
+.table-striped .even {
+  color: $light-on-dark-text!important;
+}
+
+
 
 //== Buttons
 //
@@ -158,14 +169,14 @@ $btn-font-weight:                normal !default;
 
 $btn-default-color:              $light-on-dark-text !default;
 $btn-default-bg:                 darken($brand-primary, 25%) !default;
-$btn-default-border:             $border-color !default;
+$btn-default-border:             darken($btn-default-bg, 5%) !default;
 
 $btn-primary-color:              $light-on-dark-text !default;
-$btn-primary-bg:                 $brand-primary !default;
+$btn-primary-bg:                 darken($brand-primary, 50%) !default;
 $btn-primary-border:             darken($btn-primary-bg, 5%) !default;
 
 $btn-success-color:              $light-on-dark-text !default;
-$btn-success-bg:                 $brand-success !default;
+$btn-success-bg:                 darken($brand-success, 10%) !default;
 $btn-success-border:             darken($btn-success-bg, 5%) !default;
 
 $btn-info-color:                 $light-on-dark-text !default;
@@ -610,7 +621,7 @@ $modal-title-padding:         15px !default;
 $modal-title-line-height:     $line-height-base !default;
 
 //** Background color of modal content area
-$modal-content-bg:                             #fff !default;
+$modal-content-bg:                             	darken($content-bg, 15%) !default;
 //** Modal content border color
 $modal-content-border-color:                   rgba(0,0,0,.2) !default;
 //** Modal content border color **for IE8**
@@ -779,9 +790,12 @@ $thumbnail-caption-padding:   9px !default;
 //
 //##
 
-$well-bg:                     $content-bg !default;
-$well-border:                 $border-color;
+$well-bg:                     darken($content-bg, 15%) !default;
+$well-border:                 none;
 
+.well{
+	color: if((lightness($content-bg) > 50), $dark-on-light-text, $light-on-dark-text);
+}
 
 //== Badges
 //
@@ -886,3 +900,16 @@ $dl-horizontal-offset:        $component-offset-horizontal !default;
 $dl-horizontal-breakpoint:    $grid-float-breakpoint !default;
 //** Horizontal line color.
 $hr-border:                   $headings-color;
+
+//== Event Calendar
+//
+//##
+
+#variant_date_picker .ui-datepicker-header, #variant_date_picker .ui-state-default{
+  background: $secondary-color;
+  color: $text-color;
+}
+
+.list-group-item{
+	
+}

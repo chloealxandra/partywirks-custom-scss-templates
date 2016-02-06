@@ -8,12 +8,12 @@ $bootstrap-sass-asset-helper: false !default;
 //## Settings for some of the most global styles.
 
 $content-bg:            #fff !default; //** Background color for text content areas.
-$primary-color:        	#333B40 !default; // Brands primary color
-$secondary-color:       #8599A6 !default; // In case branding employs two colors.
+$primary-color:        	#666666 !default; // Brands primary color
+$secondary-color:       #4D4D4D !default; // In case branding employs two colors.
 $body-bg:               lighten($primary-color, 45%) !default; //** Background color for `<body>`.
 $border-color:          $body-bg !default; //** Standardize border colors.
 $component-active-color:    $content-bg !default; //** Global color for active items (e.g., navs or dropdowns).
-$component-active-bg:       darken($primary-color, 5%) !default; //** Global background color for active items (e.g., navs or dropdowns).
+$component-active-bg:       lighten($primary-color, 25%) !default; //** Global background color for active items (e.g., navs or dropdowns).
 
 
 //== Colors
@@ -29,15 +29,15 @@ $gray-lighter:          lighten($gray-base, 93.5%) !default; // #eee
 
 $brand-primary:         $primary-color !default; // #337ab7
 $brand-secondary:       $secondary-color !default; // In case branding employs two colors.
-$brand-success:         #6ACF5E !default;
-$brand-info:            #536DFE !default;
+$brand-success:         #CCCCCC !default;
+$brand-info:            #A3A3A3 !default;
 $brand-warning:         #f0ad4e !default;
 $brand-danger:          #d9534f !default;
 
 $dark-on-light-text:    #000 !default;
 $light-on-dark-text:    #fff !default;
 $headings-color:        if((lightness($body-bg) > 50), darken($primary-color,25%), $light-on-dark-text);
-$text-color:            if((lightness($content-bg) > 50), $dark-on-light-text, $light-on-dark-text);
+$text-color:            if((lightness($body-bg) > 50), $dark-on-light-text, $light-on-dark-text);
 $link-color:            darken($brand-primary, 15%) !default; //** Global textual link color.
 $link-hover-color:      darken($link-color, 25%) !default; //** Link hover color set via `darken()` function.
 $link-hover-decoration: underline !default; //** Link hover decoration.
@@ -45,18 +45,16 @@ $link-hover-decoration: underline !default; //** Link hover decoration.
 
 //== Typography
 //
-//## Import Google Font.
-@import url(https://fonts.googleapis.com/css?family=Lato:400,100,700|Slabo+27px);
 
 //## Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:  Lato, Arial sans-serif!default;
-$font-family-serif:       'Slabo 27px', Georgia serif !default;
+$font-family-sans-serif:  Arial, sans-serif!default;
+$font-family-serif:       Georgia, serif !default;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
 $font-family-base:        $font-family-sans-serif !default;
 
-$font-size-base:          14px !default;
+$font-size-base:          16px !default;
 $font-size-large:         ceil(($font-size-base * 1.25)) !default; // ~18px
 $font-size-small:         ceil(($font-size-base * 0.85)) !default; // ~12px
 
@@ -73,7 +71,7 @@ $line-height-base:        1.428571429 !default; // 20/14
 $line-height-computed:    floor(($font-size-base * $line-height-base)) !default; // ~20px
 
 //** By default, this inherits from the `<body>`.
-$headings-font-family:    $font-family-serif !default;
+$headings-font-family:    $font-family-sans-serif !default;
 $headings-font-weight:    500 !default;
 $headings-line-height:    1.1 !default;
 
@@ -157,8 +155,8 @@ $table-border-color:            $border-color !default;
 $btn-font-weight:                normal !default;
 
 $btn-default-color:              $light-on-dark-text !default;
-$btn-default-bg:                 darken($brand-primary, 25%) !default;
-$btn-default-border:             $border-color !default;
+$btn-default-bg:                 darken($brand-primary, 10%) !default;
+$btn-default-border:             darken($btn-default-bg, 5%) !default;
 
 $btn-primary-color:              $light-on-dark-text !default;
 $btn-primary-bg:                 $brand-primary !default;
@@ -610,7 +608,7 @@ $modal-title-padding:         15px !default;
 $modal-title-line-height:     $line-height-base !default;
 
 //** Background color of modal content area
-$modal-content-bg:                             #fff !default;
+$modal-content-bg:                             $body-bg !default;
 //** Modal content border color
 $modal-content-border-color:                   rgba(0,0,0,.2) !default;
 //** Modal content border color **for IE8**
@@ -886,3 +884,12 @@ $dl-horizontal-offset:        $component-offset-horizontal !default;
 $dl-horizontal-breakpoint:    $grid-float-breakpoint !default;
 //** Horizontal line color.
 $hr-border:                   $headings-color;
+
+//== Event Calendar
+//
+//##
+
+#variant_date_picker .ui-datepicker-header, #variant_date_picker .ui-state-default{
+  background: $brand-primary; 
+  color: $light-on-dark-text;
+}

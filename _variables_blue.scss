@@ -45,18 +45,16 @@ $link-hover-decoration: underline !default; //** Link hover decoration.
 
 //== Typography
 //
-//## Import Google Font.
-@import url(https://fonts.googleapis.com/css?family=Lato:400,100,700|Slabo+27px);
 
 //## Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:  Lato, Arial sans-serif!default;
-$font-family-serif:       'Slabo 27px', Georgia serif !default;
+$font-family-sans-serif:  Arial, sans-serif!default;
+$font-family-serif:       Georgia, serif !default;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
 $font-family-base:        $font-family-sans-serif !default;
 
-$font-size-base:          14px !default;
+$font-size-base:          16px !default;
 $font-size-large:         ceil(($font-size-base * 1.25)) !default; // ~18px
 $font-size-small:         ceil(($font-size-base * 0.85)) !default; // ~12px
 
@@ -73,7 +71,7 @@ $line-height-base:        1.428571429 !default; // 20/14
 $line-height-computed:    floor(($font-size-base * $line-height-base)) !default; // ~20px
 
 //** By default, this inherits from the `<body>`.
-$headings-font-family:    $font-family-serif !default;
+$headings-font-family:    $font-family-sans-serif !default;
 $headings-font-weight:    500 !default;
 $headings-line-height:    1.1 !default;
 
@@ -158,7 +156,7 @@ $btn-font-weight:                normal !default;
 
 $btn-default-color:              $light-on-dark-text !default;
 $btn-default-bg:                 darken($brand-primary, 25%) !default;
-$btn-default-border:             $border-color !default;
+$btn-default-border:             darken($btn-default-bg, 5%) !default;
 
 $btn-primary-color:              $light-on-dark-text !default;
 $btn-primary-bg:                 $brand-primary !default;
@@ -886,3 +884,11 @@ $dl-horizontal-offset:        $component-offset-horizontal !default;
 $dl-horizontal-breakpoint:    $grid-float-breakpoint !default;
 //** Horizontal line color.
 $hr-border:                   $headings-color;
+
+//== Event Calendar
+//
+//##
+
+#variant_date_picker .ui-datepicker-header, #variant_date_picker .ui-state-default{
+  background: $brand-primary; 
+}
